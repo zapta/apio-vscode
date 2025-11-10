@@ -1,0 +1,18 @@
+node_modules
+.git
+.gitignore
+.vscode
+*.vsix
+install-locally.sh
+clear-apio-extension.sh
+.DS_Store
+.github
+eslint.config.mjs
+scripts
+.run.sh
+
+# This image is served in README.md from the github repo so 
+# no need to include in the package.
+media/screenshot1.png
+
+

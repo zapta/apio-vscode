@@ -1,0 +1,95 @@
+{
+  "name": "apio",
+  "displayName": "Apio FPGA",
+  "description": "One-click build for Apio FPGA projects",
+  "version": "0.1.0",
+  "publisher": "FPGAwars",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "fpga",
+    "apio",
+    "verilog",
+    "system verilog",
+    "systemverilog",
+    "icestorm",
+    "yosys",
+    "ice40",
+    "ecp5",
+    "gowin"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zapta/apio-vscode.git"
+  },
+  "activationEvents": [
+    "workspaceContains:apio.ini"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "apioContainer",
+          "title": "Apio",
+          "icon": "media/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "apioContainer": [
+        {
+          "id": "apio.sidebar.project",
+          "name": "PROJECT",
+          "icon": "media/sidebar-icon.svg",
+          "type": "tree"
+        },
+        {
+          "id": "apio.sidebar.boards",
+          "name": "BOARDS",
+          "icon": "media/sidebar-icon.svg",
+          "type": "tree"
+        },
+        {
+          "id": "apio.sidebar.tools",
+          "name": "TOOLS",
+          "icon": "media/sidebar-icon.svg",
+          "type": "tree"
+        },
+        {
+          "id": "apio.sidebar.settings",
+          "name": "SETTINGS",
+          "icon": "media/sidebar-icon.svg",
+          "type": "tree"
+        },
+                {
+          "id": "apio.sidebar.help",
+          "name": "HELP",
+          "icon": "media/sidebar-icon.svg",
+          "type": "tree"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/fpgawars/apio/issues"
+  },
+  "homepage": "https://github.com/fpgawars/apio-vscode",
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0"
+  }
+}
