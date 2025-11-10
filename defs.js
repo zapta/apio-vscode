@@ -11,7 +11,7 @@ const COMMANDS_TREE = [
         tooltip: "Build the apio project",
         id: "apio.build",
         action: { cmds: ["apio build {env-flag}"] },
-        btn: { icon: "$(chip)", priority: 98 },
+        btn: { icon: "$(check)", priority: 98 },
       },
       {
         title: "Upload",
@@ -25,7 +25,7 @@ const COMMANDS_TREE = [
         tooltip: "Clean the build artifacts",
         id: "apio.clean",
         action: { cmds: ["apio clean"] },
-        btn: { icon: "$(trash)", priority: 95 },
+        btn: { icon: "$(trash)", priority: 93 },
       },
     ],
   },
@@ -47,15 +47,17 @@ const COMMANDS_TREE = [
       },
       {
         title: "Sim",
-        tooltip: "Run simulator on the default testbench",
+        tooltip: "Run the testbench simulator",
         id: "apio.sim",
         action: { cmds: ["apio sim {env-flag}"] },
+        btn: { icon: "$(debug-alt)", priority: 94 },
       },
       {
         title: "Test",
-        tooltip: "Run the testbenchs",
+        tooltip: "Run automatic tests",
         id: "apio.test",
         action: { cmds: ["apio test"] },
+        btn: { icon: "$(beaker)", priority: 95 },
       },
       {
         title: "Report",
@@ -200,7 +202,6 @@ const COMMANDS_TREE = [
   },
 ];
 
-
 const TOOLS_TREE = [
   {
     title: "Terminal",
@@ -209,7 +210,6 @@ const TOOLS_TREE = [
     action: { cmds: [] },
   },
 ];
-
 
 const HELP_TREE = [
   {
@@ -225,16 +225,22 @@ const HELP_TREE = [
     action: { cmds: ["apio raw --verbose"] },
   },
   {
-    title: "Documentation",
-    tooltip: "Open Apio documentation",
+    title: "Overview",
+    tooltip: "Show Apio documentation",
     id: "apio.docs",
     action: { url: "https://fpgawars.github.io/apio/docs" },
   },
   {
-    title: "Apio commands",
-    tooltip: "Open Apio commands documentation",
-    id: "apio.commands.docs",
+    title: "Commands",
+    tooltip: "Show Apio commands documentation",
+    id: "apio.docs.commands",
     action: { url: "https://fpgawars.github.io/apio/docs/cmd-apio-build" },
+  },
+    {
+    title: "Project file apio.ini",
+    tooltip: "Show Apio project file documentation",
+    id: "apio.docs.project.file",
+    action: { url: "https://fpgawars.github.io/apio/docs/project-file" },
   },
   {
     title: "Ask questions",

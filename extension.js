@@ -1,4 +1,4 @@
-// List of VSC icons at:
+// List of VSC text icons at:
 // https://code.visualstudio.com/api/references/icons-in-labels
 
 // Online Javascript linter at: https://eslint.org/play/
@@ -285,8 +285,9 @@ function extractApioIniEnvs(filePath) {
   }
 }
 
+// Update the displaed of the env selector.
 function updateEnvSelector() {
-  statusBarEnv.text = `$(selection) Env: ${currentEnv || ENV_DEFAULT}`;
+  statusBarEnv.text = (currentEnv  && currentEnv != ENV_DEFAULT)? `[env:${currentEnv}]` : ENV_DEFAULT;
   statusBarEnv.tooltip = "APIO: Select apio.ini env";
 }
 
