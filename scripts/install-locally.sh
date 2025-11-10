@@ -13,7 +13,7 @@ set -e
 # Add 'code' to PATH.
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-rm -f apio*.vsix
+rm -f *.vsix
 
 # Build
 npx vsce package 
@@ -22,7 +22,6 @@ npx vsce package
 #code --uninstall-extension FPGAwars.apio
 
 # List the files included in the package
-#cp apio-*.vsix /tmp/apio-vscode-vsix.zip
 unzip -l apio-*.vsix
 
 # Install 
