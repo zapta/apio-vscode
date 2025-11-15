@@ -4,7 +4,7 @@
 
 const COMMANDS_TREE = [
   {
-    title: "Build",
+    title: "Build project",
     children: [
       {
         title: "Build",
@@ -30,7 +30,7 @@ const COMMANDS_TREE = [
     ],
   },
   {
-    title: "Verify",
+    title: "Verify project",
     children: [
       {
         title: "Lint",
@@ -76,7 +76,48 @@ const COMMANDS_TREE = [
   },
 
   {
-    title: "Boards",
+    title: "Preferences",
+    children: [
+      {
+        title: "List preferences",
+        tooltip: "List user preferences",
+        id: "apio.preferences",
+        action: { cmds: ["apio preferences --list"] },
+      },
+      {
+        title: "Themes",
+        children: [
+          {
+            title: "Set for light background",
+            tooltip: "Select colors for a light background",
+            id: "apio.preferences.light",
+            action: { cmds: ["apio preferences --theme light"] },
+          },
+          {
+            title: "Set for dark background",
+            tooltip: "Select colors for a dark background",
+            id: "apio.preferences.dark",
+            action: { cmds: ["apio preferences --theme dark"] },
+          },
+          {
+            title: "Set no colors",
+            tooltip: "Disable Apio output colors",
+            id: "apio.preferences.no-colors",
+            action: { cmds: ["apio preferences --theme no-colors"] },
+          },
+          {
+            title: "Show themes",
+            tooltip: "List themes and their colors",
+            id: "apio.info.themes",
+            action: { cmds: ["apio info themes"] },
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "FPGA Boards",
     children: [
       {
         title: "List boards",
@@ -96,86 +137,56 @@ const COMMANDS_TREE = [
         id: "apio.examples.list",
         action: { cmds: ["apio examples list"] },
       },
+        {
+        title: "FTDI Drivers",
+        children: [
+          {
+            title: "List devices",
+            tooltip: "List USB devices",
+            id: "apio.devices.usb",
+            action: { cmds: ["apio devices usb"] },
+          },
+          {
+            title: "Install driver",
+            tooltip: "Install FTDI driver for your board",
+            id: "apio.drivers.install.ftdi",
+            action: { cmds: ["apio drivers install ftdi"] },
+          },
+          {
+            title: "Uninstall driver",
+            tooltip: "Uninstall the FTDI driver",
+            id: "apio.drivers.uninstall.ftdi",
+            action: { cmds: ["apio drivers uninstall ftdi"] },
+          },
+        ],
+      },
+      {
+        title: "Serial Drivers",
+        children: [
+          {
+            title: "List devices",
+            tooltip: "List serial devices",
+            id: "apio.devices.serial",
+            action: { cmds: ["apio devices serial"] },
+          },
+          {
+            title: "Install driver",
+            tooltip: "Install serial driver for your board",
+            id: "apio.drivers.install.serial",
+            action: { cmds: ["apio drivers install serial"] },
+          },
+          {
+            title: "Uninstall driver",
+            tooltip: "Uninstall the serial driver",
+            id: "apio.drivers.uninstall.serial",
+            action: { cmds: ["apio drivers uninstall serial"] },
+          },
+        ],
+      },
     ],
   },
 
-  {
-    title: "Preferences",
-    children: [
-      {
-        title: "Show preferences",
-        tooltip: "Show user preferences",
-        id: "apio.preferences",
-        action: { cmds: ["apio preferences --list"] },
-      },
-      {
-        title: "Set light background theme",
-        tooltip: "Select colors for a light background",
-        id: "apio.preferences.light",
-        action: { cmds: ["apio preferences --theme light"] },
-      },
-      {
-        title: "Set dark background theme",
-        tooltip: "Select colors for a dark background",
-        id: "apio.preferences.dark",
-        action: { cmds: ["apio preferences --theme dark"] },
-      },
-      {
-        title: "Set no colors theme",
-        tooltip: "Disable Apio output colors",
-        id: "apio.preferences.no-colors",
-        action: { cmds: ["apio preferences --theme no-colors"] },
-      },
-      {
-        title: "Show themes colors",
-        tooltip: "Show themes colors",
-        id: "apio.info.themes",
-        action: { cmds: ["apio info themes"] },
-      },
-    ],
-  },
 
-  {
-    title: "System Drivers",
-    children: [
-      {
-        title: "List USB devices",
-        tooltip: "List USB devices",
-        id: "apio.devices.usb",
-        action: { cmds: ["apio devices usb"] },
-      },
-      {
-        title: "List serial devices",
-        tooltip: "List serial devices",
-        id: "apio.devices.serial",
-        action: { cmds: ["apio devices serial"] },
-      },
-      {
-        title: "Install FTDI driver",
-        tooltip: "Install FTDI driver for your board",
-        id: "apio.drivers.install.ftdi",
-        action: { cmds: ["apio drivers install ftdi"] },
-      },
-      {
-        title: "Uninstall FTDI driver",
-        tooltip: "Uninstall the FTDI driver",
-        id: "apio.drivers.uninstall.ftdi",
-        action: { cmds: ["apio drivers uninstall ftdi"] },
-      },
-      {
-        title: "Install serial driver",
-        tooltip: "Install serial driver for your board",
-        id: "apio.drivers.install.serial",
-        action: { cmds: ["apio drivers install serial"] },
-      },
-      {
-        title: "Uninstall serial driver",
-        tooltip: "Uninstall the serial driver",
-        id: "apio.drivers.uninstall.serial",
-        action: { cmds: ["apio drivers uninstall serial"] },
-      },
-    ],
-  },
 
   {
     title: "Apio Packages",
@@ -236,7 +247,7 @@ const HELP_TREE = [
     id: "apio.docs.commands",
     action: { url: "https://fpgawars.github.io/apio/docs/cmd-apio-build" },
   },
-    {
+  {
     title: "Project file apio.ini",
     tooltip: "Show Apio project file documentation",
     id: "apio.docs.project.file",
