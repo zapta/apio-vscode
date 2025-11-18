@@ -68,8 +68,8 @@
   },
   "extensionRecommendations": [
     {
-      "recommendation": "chipsalliance.verible",
-      "description": "Verilog support, works with Apio provided Verible language server."
+      "recommendation": "eirikpre.systemverilog",
+      "description": "Verilog and System-Verilog support."
     }
   ],
   "scripts": {
