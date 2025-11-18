@@ -66,6 +66,12 @@
       ]
     }
   },
+  "extensionRecommendations": [
+    {
+      "recommendation": "chipsalliance.verible",
+      "description": "Verilog support, works with Apio provided Verible language server."
+    }
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .js",
