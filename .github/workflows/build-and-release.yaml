@@ -67,10 +67,12 @@ jobs:
           ls -al
 
       - name: Extract values and set environment variables
-        working-directory: ${{ github.workspace }}
         run: |
-          const constants = require('./constants.js');
-          const pkg = require('./package.json');
+          const workspace = process.env.GITHUB_WORKSPACE;
+
+          const path = require('path');
+          const constants = require(path.join(workspace, 'constants.js'));
+          const pkg = require(path.join(workspace, 'package.json'));
 
           process.stdout.write(`VSCODE_EXTENSION_VERSION=${pkg.version}\n`);
           process.stdout.write(`APIO_RELEASE_GITHUB_REPO=${constants.APIO_RELEASE_GITHUB_REPO}\n`);
