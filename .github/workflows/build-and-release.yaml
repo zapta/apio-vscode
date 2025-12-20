@@ -30,6 +30,10 @@ jobs:
       - name: Checkout this repo
         uses: actions/checkout@v4
 
+      - name: List repo files
+        run: |
+          ls -al
+
       # E.g. "2025-11-02"
       - name: Determine release tag
         run: |
@@ -58,6 +62,20 @@ jobs:
       - name: Verify npx
         run: npx --version
 
+      - name: List repo files
+        run: |
+          ls -al
+
+      - name: Extract values and set environment variables
+        run: |
+          const constants = require('./constants.js');
+          const pkg = require('./package.json');
+
+          process.stdout.write(`VSCODE_EXTENSION_VERSION=${pkg.version}\n`);
+          process.stdout.write(`APIO_RELEASE_GITHUB_REPO=${constants.APIO_RELEASE_GITHUB_REPO}\n`);
+          process.stdout.write(`APIO_RELEASE_TAG=${constants.APIO_RELEASE_TAG}\n`);
+        shell: node {0}
+
       - name: Build the .vsix file
         run: |
           ./scripts/build.sh
@@ -70,16 +88,6 @@ jobs:
       - name: Show packaged files
         run: |
           unzip -l $PACKAGE_NAME
-
-      - name: Extract values and set environment variables
-        run: |
-          const constants = require('./constants.js');
-          const pkg = require('./package.json');
-
-          process.stdout.write(`VSCODE_EXTENSION_VERSION=${pkg.version}\n`);
-          process.stdout.write(`APIO_RELEASE_GITHUB_REPO=${constants.APIO_RELEASE_GITHUB_REPO}\n`);
-          process.stdout.write(`APIO_RELEASE_TAG=${constants.APIO_RELEASE_TAG}\n`);
-        shell: node {0}
 
       # Delete old pre-releases, keeps all releases.
       - name: Delete old pre-releases
