@@ -82,6 +82,36 @@ jobs:
           fs.appendFileSync(envPath, `APIO_RELEASE_TAG=${constants.APIO_RELEASE_TAG}\n`);
         shell: node {0}
 
+      # Create the build info file that we will include in the package.
+      - name: Create build info
+        run: |
+          # Generate build-info.json
+          cat > build-info.json <<EOF
+          {
+            "package-name":  "apio-vscode",
+            "description" : "Apio extension for Visual Studio Code",
+            "source-repo":  "${{github.repository}}",
+            "source-sha":   "${{ github.sha }}",
+            "source-branch: "${{ github.ref_name }}",
+            "package-version": "$VSCODE_EXTENSION_VERSION",
+            "apio-release-repo": "APIO_RELEASE_GITHUB_REPO",
+            "apio-release-tag" : "APIO_RELEASE_TAG",
+            "build-time":  "$(date +'%Y-%m-%d %H:%M:%S %Z')",
+            "builder-workflow":  "${{ github.workflow }}",
+            "workflow-run-id":  "${{github.run_id}}",
+            "workflow-run-number": "${{github.run_number}}",
+            "release-tag": "${RELEASE_TAG}"
+          }
+          EOF
+
+          cat -n build-info.json
+
+      - name: Format build info 
+        run: |
+          npm install -g json-align
+          json-align --in-place --spaces 2 build-info.json
+          cat -n build-info.json
+
       - name: Build the .vsix file
         run: |
           ./scripts/build.sh
@@ -94,6 +124,26 @@ jobs:
       - name: Show packaged files
         run: |
           unzip -l $PACKAGE_NAME
+
+
+      # Add notes for the release page.
+      - name: Prepare release text
+        run: |
+          cat  > RELEASE-BODY.txt <<EOF
+          This is the daily build of the Apio VSCode extension.
+
+          > This repository keeps only the last 5 pre-releases so to preserve
+          > a release, check off its's pre-release [] checkbox.
+
+          Build info:
+          \`\`\`
+          $(tr -d '",{}' < build-info.json)
+          \`\`\`
+
+          Installation instructions](https://fpgawars.github.io/apio/docs/quick-start)
+          EOF
+
+          cat -n $out
 
       # Delete old pre-releases, keeps all releases.
       - name: Delete old pre-releases
