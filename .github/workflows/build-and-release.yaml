@@ -71,14 +71,14 @@ jobs:
         run: |
           unzip -l $PACKAGE_NAME
 
-      - name: Extract apio and extension info.
+      - name: Extract values and set environment variables
         run: |
-          const pkg = require('./package.json');
           const constants = require('./constants.js');
+          const pkg = require('./package.json');
 
-          echo "VSCODE_EXTENSION_VERSION=${pkg.version}" >> $GITHUB_ENV
-          echo "APIO_RELEASE_GITHUB_REPO=${constants.APIO_RELEASE_GITHUB_REPO}" >> $GITHUB_ENV
-          echo "APIO_RELEASE_TAG=${constants.APIO_RELEASE_GITHUB_REPO}" >> $GITHUB_ENV
+          process.stdout.write(`VSCODE_EXTENSION_VERSION=${pkg.version}\n`);
+          process.stdout.write(`APIO_RELEASE_GITHUB_REPO=${constants.APIO_RELEASE_GITHUB_REPO}\n`);
+          process.stdout.write(`APIO_RELEASE_TAG=${constants.APIO_RELEASE_TAG}\n`);
         shell: node {0}
 
       # Delete old pre-releases, keeps all releases.
