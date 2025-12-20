@@ -70,13 +70,16 @@ jobs:
         run: |
           const workspace = process.env.GITHUB_WORKSPACE;
 
+          const fs = require('fs');
           const path = require('path');
           const constants = require(path.join(workspace, 'constants.js'));
           const pkg = require(path.join(workspace, 'package.json'));
 
-          process.stdout.write(`VSCODE_EXTENSION_VERSION=${pkg.version}\n`);
-          process.stdout.write(`APIO_RELEASE_GITHUB_REPO=${constants.APIO_RELEASE_GITHUB_REPO}\n`);
-          process.stdout.write(`APIO_RELEASE_TAG=${constants.APIO_RELEASE_TAG}\n`);
+          const envPath = process.env.GITHUB_ENV;
+
+          fs.appendFileSync(envPath, `VSCODE_EXTENSION_VERSION=${pkg.version}\n`);
+          fs.appendFileSync(envPath, `APIO_RELEASE_GITHUB_REPO=${constants.APIO_RELEASE_GITHUB_REPO}\n`);
+          fs.appendFileSync(envPath, `APIO_RELEASE_TAG=${constants.APIO_RELEASE_TAG}\n`);
         shell: node {0}
 
       - name: Build the .vsix file
