@@ -1,4 +1,10 @@
 
+## [0.1.5] - 2025-12-21
+
+### CHANGED
+- The FPGA constraint files such as `pinout.pcf` can now be placed also in subdirectories.
+  Previously they had to reside at the project's root directory.
+
 ## [0.1.4] - 2025-12-20
 
 ### Changed
