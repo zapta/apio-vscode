@@ -108,6 +108,8 @@ jobs:
 
       - name: Format build info 
         run: |
+          set -x
+          cat -n build-info.json
           npm install -g json-align
           json-align --in-place --spaces 2 build-info.json
           cat -n build-info.json
