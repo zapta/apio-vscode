@@ -67,6 +67,7 @@ jobs:
           ls -al
 
       - name: Extract values and set environment variables
+        working-directory: ${{ github.workspace }}
         run: |
           const constants = require('./constants.js');
           const pkg = require('./package.json');
