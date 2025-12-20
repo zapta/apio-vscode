@@ -129,9 +129,9 @@ jobs:
 
 
       # Add notes for the release page.
-      - name: Prepare release text
+      - name: Create the release text
         run: |
-          cat  > RELEASE-BODY.txt <<EOF
+          cat  > $GITHUB_STEP_SUMMARY <<EOF
           This is the daily build of the Apio VSCode extension.
 
           > This repository keeps only the last 5 pre-releases so to preserve
@@ -145,7 +145,7 @@ jobs:
           Installation instructions](https://fpgawars.github.io/apio/docs/quick-start)
           EOF
 
-          cat -n $out
+          cat -n $GITHUB_STEP_SUMMARY
 
       # Delete old pre-releases, keeps all releases.
       - name: Delete old pre-releases
