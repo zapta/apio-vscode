@@ -92,7 +92,7 @@ jobs:
             "description" : "Apio extension for Visual Studio Code",
             "source-repo":  "${{github.repository}}",
             "source-sha":   "${{ github.sha }}",
-            "source-branch: "${{ github.ref_name }}",
+            "source-branch": "${{ github.ref_name }}",
             "package-version": "$VSCODE_EXTENSION_VERSION",
             "apio-release-repo": "APIO_RELEASE_GITHUB_REPO",
             "apio-release-tag" : "APIO_RELEASE_TAG",
