@@ -17,6 +17,9 @@ env:
   # prevents warnings in the vscode editor.
   RELEASE_TAG: ""
   PACKAGE_TAG: ""
+  VSCODE_EXTENSION_VERSION: ""
+  APIO_RELEASE_GITHUB_REPO: ""
+  APIO_RELEASE_TAG: ""
 
 jobs:
   # ----- Parameters collection job
@@ -67,6 +70,16 @@ jobs:
       - name: Show packaged files
         run: |
           unzip -l $PACKAGE_NAME
+
+      - name: Extract apio and extension info.
+        run: |
+          const pkg = require('./package.json');
+          const constants = require('./constants.js');
+
+          echo "VSCODE_EXTENSION_VERSION=${pkg.version}" >> $GITHUB_ENV
+          echo "APIO_RELEASE_GITHUB_REPO=${constants.APIO_RELEASE_GITHUB_REPO}" >> $GITHUB_ENV
+          echo "APIO_RELEASE_TAG=${constants.APIO_RELEASE_GITHUB_REPO}" >> $GITHUB_ENV
+        shell: node {0}
 
       # Delete old pre-releases, keeps all releases.
       - name: Delete old pre-releases
