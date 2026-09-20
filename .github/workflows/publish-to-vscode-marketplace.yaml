@@ -24,6 +24,11 @@ on:
         required: true
         type: string
 
+env:
+  # These env vars are set later.
+  APIO_CLI_RELEASE_REPO: ""
+  APIO_CLI_RELEASE_TAG: ""
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -36,7 +41,7 @@ jobs:
         with:
           release-tag: ${{ inputs.release_tag }}
 
-      - name: Check that the release is stable
+      - name: Check that the apio-vscode release is stable
         uses: fpgawars/apio-workflows/.github/actions/check-release-is-stable@main
         with:
           release-repo: ${{ github.repository }}
@@ -53,6 +58,31 @@ jobs:
       - name: List files
         run: |
           ls -al
+
+      - name: Extract the package.json file
+        run: |
+          unzip -p apio-vscode-????????.vsix extension/package.json > package.json
+          cat -n package.json
+
+      - name: List files
+        run: |
+          ls -al
+
+      - name: Extract Apio CLI release info
+        run: |
+          repo=$(jq -r '.appConstants.apioCliReleaseRepo' package.json)
+          echo "APIO_CLI_RELEASE_REPO=$repo"
+          echo "APIO_CLI_RELEASE_REPO=$repo" >> "$GITHUB_ENV"
+
+          tag=$(jq -r '.appConstants.apioCliReleaseTag' package.json)
+          echo "APIO_CLI_RELEASE_TAG=$tag"
+          echo "APIO_CLI_RELEASE_TAG=$tag" >> "$GITHUB_ENV"
+
+      - name: Check that the apio-cli release is stable
+        uses: fpgawars/apio-workflows/.github/actions/check-release-is-stable@main
+        with:
+          release-repo: ${{ env.APIO_CLI_RELEASE_REPO }}
+          release-tag: ${{ env.APIO_CLI_RELEASE_TAG }}
 
       - name: Install vsce
         run: |
