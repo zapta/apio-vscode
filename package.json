@@ -6,7 +6,7 @@
   "publisher": "fpgawars",
   "icon": "media/market-icon.png",
   "appConstants" : {
-    "apioCliReleaseRepo": "fpgawars/apio",
+    "apioCliReleaseRepo": "zapta/apio",
     "apioCliReleaseTag": "2026-09-27"
   },
   "categories": [
